@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BOOKING</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- for login form -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+  <link type="text/css" rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- login form ends -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  /* Remove the navbar's default margin-bottom and rounded borders */
+  body{
+    background-image:url("img/sliders/mt2.jpg");   /*color: orange;*/
+  }
+  #genre{
+    color: red;
+  }
+  #cast{
+    color: red;
+  }
+  tr:hover {background-color: red}
+
+  th {
+    text-align: center;
+    background-color: darkred;
+    color: white;
+  }
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  .row.content {height: 450px}
+
+  /* Set gray background color and 100% height */
+  .sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 200%;
+  }
+
+  /* Set black background color, white text and some padding */
+  footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+  }
+
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;}
+  }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!--<a class="navbar-brand" href="index.html"><img src="img/logo/home.png" class="img-responsive" alt="logo" style="margin-top:-25px;width:max-width">-->
+        <a class="navbar-brand" href="index.html">HOME</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="page-scroll"><a href="booking.html">BOOKING</a></li>
+          <li><a href="trailers.html" class="page-scroll">TRAILERS</a></li>
+          <li><a href="theaters.html" class="page-scroll">THEATERS</a></li>
+          <li><a href="searchMovies.html" class="page-scroll" >SEARCH MOVIES</a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <div class="btn-group" style="margin-top:5%">
+            <button class="btn"><li><a id="modal_trigger" href="#modal" class="btnsign">LOGIN</a><span id="logged_in_user"></span>  </li></button>
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a  href="#" class="logout" style="color:blue" id="log_user_out">LOGOUT</a> </li>
+              <!-- dropdown menu links -->
+            </ul>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:skyblue">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:white" id="bookhere">BOOK HERE</h4>
+          <h4 class="modal-title" style="color:white" id="paise">PAY : Rs <span id="rupees"></span></h4>
+        </div>
+        <div class="modal-body" id="modal-body">
+          NUMBER OF TICKETS &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; <input type="number" id="num" min="1" max="5" style="width:30%"><br><br>
+          <button type="button" class="btn btn-info" id="getform">PROCEED TO PAYMENT</button>
+        </div>
+
+        <div class="col-md-8 col-md-offset-2 theform">
+
+          <form novalidate>
+            <div class="form-group">
+              <label for="email">Full Name</label>
+              <input type="text" class="form-control" id="fullname">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Phone No.</label>
+              <input type="text" class="form-control" id="phone">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Email</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <button type="button" class="btn btn-info" id="card">Fill Credit/Debit Card Details</button>
+          </form>
+        </div>
+
+        <div class="col-md-8 col-md-offset-2 carddetails">
+          <form novalidate>
+            <div class="form-group">
+              <label for="email">Cardholder Name</label>
+              <input type="text" class="form-control" id="cardholder">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Card No.</label>
+              <input type="text" class="form-control" id="cardnum">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Expiration date</label>
+              <input type="text" class="form-control" id="expdate" placeholder="mm/dd/yyyy">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Security code</label>
+              <input type="text" class="form-control" id="security">
+            </div>
+            <button type="submit" class="btn btn-info" id="pay" data-dismiss="modal">Pay</button>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid text-center">
+    <div class="row content">
+
+      <div class="col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1" style="background-color:white;opacity:0.95">
+        <!-- ENTER ALL THE MAAL HERE-->
+        <h1 style="font-family:cursive">BOOK YOUR TICKETS</h1>
+        <!--<div class="col-sm-8 text-left" id="heading" style="width:100%;margin-left:25%;padding:2%">
+        originally heading was here
+      </div>-->
+      <div class="col-sm-10 col-md-10 col-md-offset-1 col-sm-offset-1" id="banner" > <!--MOVIE BANNER -->
+      </div>
+      <div class="col-md-8 col-md-offset-2 col-sm-12 movieslist" ><!--style="width:50%;margin-left:20%;margin-top:5%"-->
+        <!-- HINDI MOVIES-->
+        <table class="table table-hover" id="hindi" style="background-color:tan">
+          <thead>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <!--ENGLISH MOVIES-->
+        <table class="table table-hover" id="english" style="background-color:tan">
+          <thead>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- div containing all the list of theaters BEGIN -->
+      <!--BANNER WAS ORIGINALLY HERE-->
+
+      <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 text-left" id="timings" >
+        <ul class="list-inline" id="film">
+
+        </ul>
+        <ul class="list-inline" id="genre">
+
+        </ul>
+        <ul class="list-inline" id="cast">
+        </ul>
+        <ul class="list-inline" id="length">
+        </ul>
+        <ul class="list-inline" id="watch">
+        </ul>
+        <div class="text-left" id="booking" > <!--col-sm-12 col-md-12 -->
+
+        </div>
+      </div>
+      <!-- TIMINGS AND OTHER THINGS ENDS HERE-->
+    </div>
+
+  </div>
+</div>
+
+<!-- LOG IN
+============================================== -->
+<div id="modal" class="popupContainer" style="display:none;">
+<header class="popupHeader" style="background-color:#00cc00; color:white">
+  <span class="header_title">Login</span>
+  <span class="modal_close" style="background-color:#00cc00; color:white"><i class="fa fa-times"></i></span>
+</header>
+
+  <section class="popupBody">
+  <!--<!  Here Goes all the Login and signup Forms -->
+  <!--1 starts -->
+  <div class="social_login">
+  <!--<div class="clearfix">
+      <a class="social_box fb" href="#"><span class="icon_title">Connect withFacebook</span> <span class="fbicon"></span></a>
+      <a class="social_box google" href="#"><span class="icon_title">Connect with Google</span></a>
+  </div>
+
+  <div class="centeredText">
+      <span>Or use your Email address</span>
+  </div>-->
+
+  <div class="action_btns">
+      <div class="one_half">
+          <a class="btn" href="#" id="login_form" name="login_form">Login</a>
+      </div>
+
+      <div class="one_half last">
+          <a class="btn" href="#" id="register_form" name="register_form">Sign up</a>
+      </div>
+  </div>
+</div>
+<!--1 ends -->
+<!--2 starts -->
+<div class="user_login">
+  <form>
+      <label>Username</label> <input type="text" id="user_name"><br>
+      <label>Password</label> <input type="password" id="passcode"><br>
+
+      <!--<div class="checkbox">
+          <input id="remember" type="checkbox"> <label for=
+          "remember">Remember me on this computer</label>
+      </div>-->
+
+      <div class="action_btns">
+          <div class="one_half">
+              <a class="btn back_btn" href="">Back</a>
+          </div>
+
+          <div class="one_half last">
+            <!--<button type="submit" class="btn btn_red modal_close" id="log_me_in" data-dismiss="modal">Login</button>-->
+              <a class="btn btn_red modal_close" href="#" id="log_me_in" >Login</a>
+          </div>
+      </div>
+  </form>
+
+  <a class="forgot_password" href="#">Forgot password?</a>
+</div>
+<!--2 ends -->
+<!--3 starts -->
+<div class="user_register">
+  <form>
+      <label>Username</label> <input type="text" id="name_user"><br>
+      <label>Full Name</label> <input type="text" id="full_name"><br>
+      <label>Email Address</label> <input type="email" id="mail"><br>
+      <label>Password</label> <input type="password" id="code"><br>
+
+      <div class="action_btns">
+          <div class="one_half">
+              <a class="btn back_btn" href="#">Back</a>
+          </div>
+
+          <div class="one_half last">
+              <a class="btn btn_red modal_close" href="#" id="register_user">Register</a>
+          </div>
+      </div>
+  </form>
+</div>
+<!--3 ends -->
+  </section>
+</div>
+<!--
+<footer class="container-fluid text-center">
+<p>Footer Text</p>
+</footer> -->
+
+<!-- JS for form -->
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<script type="text/javascript" src="js/jquey.js"></script>
+<!-- JS for form ends-->
+
+<!-- jquery for form starts -->
+<!-- JS for this page -->
+
+<script src="js/login.js">
+/*$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+$(function () {
+  // Calling Login Form
+  $("#login_form").click(function () {
+    $(".social_login").hide();
+    $(".user_login").show();
+    return false;
+  });
+
+  // Calling Register Form
+  $("#register_form").click(function () {
+    $(".social_login").hide();
+    $(".user_register").show();
+    $(".header_title").text('Register');
+    return false;
+  });
+
+  // Going back to Social Forms
+  $(".back_btn").click(function () {
+    $(".user_login").hide();
+    $(".user_register").hide();
+    $(".social_login").show();
+    $(".header_title").text('Login');
+    return false;
+  });
+
+})*/
+</script>
+<!-- jquery for form ends-->
+<script src="js/jquery.js"></script>
+<script src="js/booking.js"></script>
+
+</body>
+</html>
