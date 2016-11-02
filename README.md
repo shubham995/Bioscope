@@ -19,5 +19,5 @@ npm install
 npm start
 ```
 
-Your app should now be running on [localhost:4000](https://localhost:4000)
+The app should now be running on [localhost:4000](https://localhost:4000)
 
