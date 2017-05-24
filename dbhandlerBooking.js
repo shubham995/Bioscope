@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient
 
-var url = 'mongodb://localhost:27017/project';
+var url = 'mongodb://localhost:14000/project';
 
 module.exports = {
   bookTicket : function(book){
